@@ -2,21 +2,33 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="theme-color" content="#ffffff">
 
 <title>ESP TOUR 2.0</title>
 
-<meta name="description" content="ESP TOUR 2.0 Official Tournament App">
-<meta name="theme-color" content="#ffffff">
-
-<title>ESP TOUR 2.0 - Official Tournament App</title>
-
 <meta name="description"
-content="ESP TOUR 2.0 - Official Tournament App. Download the ESP TOUR 2.0 Android app and join exciting gaming tournaments.">
+      content="ESP TOUR 2.0 - Official Tournament App. Download the latest version and join tournaments.">
 
 <meta name="keywords"
-content="ESP TOUR 2.0, ESP Tour, ESP tournament, ESP gaming tournament, ESP app, tournament app">
-    <title>
+      content="ESP TOUR 2.0, ESP Tour, Free Fire Tournament, Tournament App, ESP">
+
+<meta name="author" content="ESP TOUR 2.0">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="./">
+
+<meta property="og:title" content="ESP TOUR 2.0">
+<meta property="og:description"
+      content="Official ESP TOUR 2.0 Tournament App">
+<meta property="og:type" content="website">
+
+<style>
+
 *{
     margin:0;
     padding:0;
@@ -30,231 +42,248 @@ html{
 
 body{
     font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
         Arial,
+        "Noto Sans Bengali",
         sans-serif;
 
-    background:#ffffff;
-    color:#111;
     min-height:100vh;
+
+    background:#ffffff;
+
+    color:#111827;
+
     overflow-x:hidden;
+
+    position:relative;
 }
 
 /* =====================================================
-   ANIMATED BACKGROUND
-===================================================== */
+   BACKGROUND ANIMATION LAYER
+   ===================================================== */
 
-.background{
+#background-effects{
     position:fixed;
+
     inset:0;
+
+    width:100%;
+    height:100%;
+
     overflow:hidden;
-    z-index:-10;
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(220,220,220,.55),
-            rgba(255,255,255,.95) 45%,
-            #ffffff 100%
-        );
-}
 
-/* soft blurred light blobs */
-
-.light{
-    position:absolute;
-    width:170px;
-    height:170px;
-    border-radius:50%;
-    filter:blur(55px);
-    opacity:.35;
-    animation:
-        floatLight 13s infinite ease-in-out;
-}
-
-.light.one{
-    left:-80px;
-    bottom:-80px;
-    background:#ff3b81;
-    animation-delay:0s;
-}
-
-.light.two{
-    right:-80px;
-    bottom:10%;
-    background:#5b5cff;
-    animation-delay:2s;
-}
-
-.light.three{
-    left:30%;
-    bottom:-100px;
-    background:#00c8ff;
-    animation-delay:4s;
-}
-
-.light.four{
-    right:20%;
-    top:-100px;
-    background:#ffb000;
-    animation-delay:6s;
-}
-
-@keyframes floatLight{
-    0%{
-        transform:translate(0,100px) scale(.7);
-        opacity:.15;
-    }
-
-    25%{
-        transform:translate(80px,-130px) scale(1);
-        opacity:.35;
-    }
-
-    50%{
-        transform:translate(-80px,-280px) scale(1.15);
-        opacity:.28;
-    }
-
-    75%{
-        transform:translate(120px,-430px) scale(.85);
-        opacity:.35;
-    }
-
-    100%{
-        transform:translate(-50px,-650px) scale(.6);
-        opacity:0;
-    }
-}
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-.particles{
-    position:absolute;
-    inset:0;
     pointer-events:none;
+
+    z-index:0;
 }
 
-.particle{
+/* Soft color blobs */
+
+.bg-blob{
     position:absolute;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:#777;
-    opacity:0;
-    filter:blur(.5px);
-    box-shadow:
-        0 0 8px currentColor,
-        0 0 16px currentColor;
 
-    animation:particleUp linear infinite;
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    filter:blur(55px);
+
+    opacity:.28;
+
+    animation:
+        blobMove 14s ease-in-out infinite alternate;
+
+    will-change:transform;
 }
 
-@keyframes particleUp{
+.blob-1{
+    background:#ff1744;
+
+    top:-80px;
+    left:-80px;
+
+    animation-duration:15s;
+}
+
+.blob-2{
+    background:#2979ff;
+
+    top:25%;
+
+    right:-100px;
+
+    animation-duration:18s;
+
+    animation-delay:-4s;
+}
+
+.blob-3{
+    background:#7c4dff;
+
+    bottom:-100px;
+
+    left:10%;
+
+    animation-duration:17s;
+
+    animation-delay:-7s;
+}
+
+.blob-4{
+    background:#00c853;
+
+    bottom:15%;
+
+    right:5%;
+
+    animation-duration:20s;
+
+    animation-delay:-10s;
+}
+
+@keyframes blobMove{
 
     0%{
         transform:
-            translate3d(0,120vh,0)
-            scale(.3);
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(60px,-50px,0)
+            scale(1.18);
+    }
+
+    100%{
+        transform:
+            translate3d(-45px,55px,0)
+            scale(.92);
+    }
+}
+
+/* Animated particles */
+
+.particle{
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    opacity:0;
+
+    filter:blur(1px);
+
+    animation:
+        particleFloat linear infinite;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+@keyframes particleFloat{
+
+    0%{
+        transform:
+            translate3d(0,110vh,0)
+            scale(.4);
+
         opacity:0;
     }
 
     10%{
-        opacity:.5;
+        opacity:.7;
     }
 
-    35%{
-        opacity:.8;
+    50%{
+        opacity:.9;
     }
 
-    70%{
-        opacity:.55;
+    90%{
+        opacity:.6;
     }
 
     100%{
         transform:
-            translate3d(var(--move),-20vh,0)
-            scale(1.15);
+            translate3d(var(--moveX),-15vh,0)
+            scale(1.4);
+
         opacity:0;
     }
 }
 
 /* =====================================================
-   MAIN
-===================================================== */
+   MAIN CONTENT
+   ===================================================== */
 
-.container{
-    width:min(94%,1050px);
-    margin:auto;
+#page-content{
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    min-height:100vh;
 }
 
-main{
-    position:relative;
-    z-index:1;
+/* Container */
+
+.container{
+    width:min(1100px,92%);
+
+    margin:auto;
 }
 
 /* =====================================================
    HEADER
-===================================================== */
+   ===================================================== */
 
 header{
+    position:relative;
+
+    z-index:10;
+
+    padding:
+        30px
+        0
+        10px;
+
     text-align:center;
-    padding:30px 0 5px;
 }
 
-.top-label{
-    display:inline-block;
-    padding:8px 15px;
-    border-radius:30px;
-
-    background:rgba(255,255,255,.75);
-    border:1px solid rgba(0,0,0,.10);
-
-    color:#666;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:3px;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.07);
-
-    backdrop-filter:blur(14px);
-}
-
-/* =====================================================
-   LOGO
-===================================================== */
+/* Logo glass wrapper */
 
 .logo-box{
-    width:190px;
-    height:190px;
 
-    margin:22px auto 0;
+    width:150px;
+    height:150px;
 
-    padding:8px;
+    margin:0 auto 18px;
 
-    border-radius:34px;
+    border-radius:35px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.98),
-            rgba(238,238,238,.72)
-        );
+        rgba(255,255,255,.65);
 
-    border:1px solid rgba(0,0,0,.13);
+    border:
+        1px solid rgba(255,255,255,.9);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.15),
-        0 0 0 7px rgba(255,255,255,.60),
-        inset 0 1px 0 rgba(255,255,255,1);
+        0 20px 50px rgba(0,0,0,.10);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 
     overflow:hidden;
 
@@ -262,1163 +291,997 @@ header{
 }
 
 .logo-box::before{
+
     content:"";
+
     position:absolute;
-    inset:-80%;
 
-    background:
-        conic-gradient(
-            transparent,
-            rgba(255,0,90,.20),
-            transparent,
-            rgba(0,140,255,.20),
-            transparent
-        );
+    inset:0;
 
-    animation:logoGlow 8s linear infinite;
-}
-
-.logo-box img{
-    position:relative;
-    z-index:2;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:27px;
-
-    display:block;
-}
-
-@keyframes logoGlow{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-    text-align:center;
-    padding:28px 0 35px;
-}
-
-.hero h1{
-    font-size:
-        clamp(36px,8vw,70px);
-
-    font-weight:950;
-
-    line-height:1;
-
-    letter-spacing:-2px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #111 0%,
-            #555 25%,
-            #000 50%,
-            #777 75%,
-            #111 100%
-        );
-
-    background-size:250% auto;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    animation:titleShine 6s linear infinite;
-}
-
-@keyframes titleShine{
-    to{
-        background-position:250% center;
-    }
-}
-
-.hero h2{
-    margin-top:13px;
-
-    font-size:
-        clamp(13px,3vw,19px);
-
-    color:#555;
-
-    font-weight:850;
-
-    letter-spacing:3px;
-}
-
-.hero p{
-    max-width:690px;
-
-    margin:18px auto 0;
-
-    color:#777;
-
-    font-size:15px;
-
-    line-height:1.75;
-}
-
-/* =====================================================
-   DOWNLOAD
-===================================================== */
-
-.download-area{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.download-btn{
-    position:relative;
-
-    min-width:245px;
-
-    padding:17px 28px;
-
-    border:0;
-    border-radius:16px;
-
-    color:#fff;
+    border-radius:inherit;
 
     background:
         linear-gradient(
             135deg,
-            #111,
-            #3b3b3b
+            rgba(255,255,255,.8),
+            rgba(255,255,255,.15)
         );
 
-    font-size:16px;
+    pointer-events:none;
+}
+
+.logo-box img{
+
+    width:90%;
+
+    height:90%;
+
+    object-fit:contain;
+
+    position:relative;
+
+    z-index:2;
+
+    border-radius:25px;
+}
+
+/* App name */
+
+.app-name{
+
+    font-size:
+        clamp(30px,7vw,55px);
+
     font-weight:900;
-    letter-spacing:1px;
+
+    letter-spacing:-1px;
+
+    color:#111827;
+
+    margin-bottom:8px;
+}
+
+.app-name span{
+
+    color:#e60023;
+}
+
+/* Tagline */
+
+.tagline{
+
+    font-size:
+        clamp(14px,3vw,19px);
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+    max-width:700px;
+
+    margin:auto;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero{
+
+    text-align:center;
+
+    padding:
+        35px
+        0
+        25px;
+}
+
+.top-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+        8px
+        16px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    border:
+        1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.07);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    color:#e60023;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    margin-bottom:18px;
+}
+
+.hero-description{
+
+    max-width:720px;
+
+    margin:0 auto 25px;
+
+    color:#4b5563;
+
+    font-size:16px;
+
+    line-height:1.8;
+}
+
+/* =====================================================
+   DOWNLOAD BUTTON
+   ===================================================== */
+
+.download-btn{
+
+    position:relative;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    min-width:230px;
+
+    min-height:58px;
+
+    padding:
+        0
+        28px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef233c,
+            #c90020
+        );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:800;
 
     cursor:pointer;
 
-    overflow:hidden;
-
     box-shadow:
-        0 16px 40px rgba(0,0,0,.22);
+        0 15px 35px rgba(230,0,35,.25);
 
-    transition:.25s ease;
-}
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 
-.download-btn::before{
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:-120%;
-
-    width:80%;
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.35),
-            transparent
-        );
-
-    transform:skewX(-20deg);
-
-    animation:buttonLight 3.5s infinite;
-}
-
-@keyframes buttonLight{
-    0%{
-        left:-120%;
-    }
-
-    45%,100%{
-        left:150%;
-    }
+    overflow:hidden;
 }
 
 .download-btn:hover{
+
     transform:translateY(-3px);
+
     box-shadow:
-        0 20px 50px rgba(0,0,0,.28);
+        0 20px 45px rgba(230,0,35,.32);
 }
 
 .download-btn:active{
+
     transform:scale(.97);
 }
 
-.download-btn.loading{
-    pointer-events:none;
-    opacity:.8;
+/* Progress */
+
+.download-progress{
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:0%;
+
+    height:4px;
+
+    background:white;
+
+    transition:
+        width .2s linear;
 }
 
 /* =====================================================
-   PROGRESS
-===================================================== */
+   GLASS CARDS
+   ===================================================== */
 
-.progress-wrapper{
-    display:none;
+.glass-card{
 
-    width:min(90%,370px);
+    position:relative;
 
-    margin:18px auto 0;
-}
+    z-index:3;
 
-.progress-wrapper.show{
-    display:block;
-}
+    margin:
+        20px
+        auto;
 
-.progress-text{
-    margin-bottom:8px;
+    padding:
+        25px;
 
-    color:#777;
-
-    font-size:12px;
-    font-weight:700;
-}
-
-.progress-bar{
-    height:8px;
-
-    background:#eeeeee;
-
-    border:1px solid #ddd;
-
-    border-radius:30px;
-
-    overflow:hidden;
-}
-
-.progress-fill{
-    width:0%;
-    height:100%;
-
-    border-radius:30px;
+    border-radius:25px;
 
     background:
-        linear-gradient(
-            90deg,
-            #111,
-            #777,
-            #111
-        );
+        rgba(255,255,255,.58);
 
-    background-size:200% 100%;
+    border:
+        1px solid rgba(255,255,255,.85);
 
-    animation:progressGlow 2s linear infinite;
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.07);
 
-    transition:width .08s linear;
+    backdrop-filter:
+        blur(20px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(130%);
 }
 
-@keyframes progressGlow{
-    to{
-        background-position:200% 0;
-    }
-}
-
-/* =====================================================
-   GLASS CARD
-===================================================== */
-
-.section{
-    padding:20px 0 60px;
-}
+/* Section title */
 
 .section-title{
-    text-align:center;
-    margin-bottom:25px;
-}
 
-.section-title h3{
-    font-size:26px;
+    font-size:
+        clamp(22px,5vw,32px);
+
     font-weight:900;
+
+    color:#111827;
+
+    margin-bottom:18px;
 }
 
 .section-title span{
-    display:block;
 
-    width:55px;
-    height:3px;
-
-    margin:10px auto 0;
-
-    border-radius:20px;
-
-    background:#111;
+    color:#e60023;
 }
 
-.glass-card{
-    background:
-        rgba(255,255,255,.70);
+/* Description */
 
-    border:1px solid rgba(0,0,0,.10);
+.section-description{
 
-    border-radius:24px;
+    color:#4b5563;
 
-    padding:25px;
+    line-height:1.8;
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.08);
-
-    backdrop-filter:
-        blur(22px);
-
-    -webkit-backdrop-filter:
-        blur(22px);
+    font-size:15px;
 }
 
 /* =====================================================
-   APP INFO
-===================================================== */
-
-.long-description{
-    color:#666;
-    font-size:15px;
-    line-height:1.75;
-}
+   INFORMATION GRID
+   ===================================================== */
 
 .info-grid{
+
     display:grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(2,minmax(0,1fr));
 
     gap:14px;
-
-    margin-top:20px;
 }
 
 .info-item{
+
     padding:18px;
 
-    border-radius:17px;
+    border-radius:18px;
 
     background:
-        rgba(255,255,255,.75);
+        rgba(255,255,255,.62);
 
-    border:1px solid rgba(0,0,0,.08);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.05);
-
-    transition:.25s;
+    border:
+        1px solid rgba(0,0,0,.06);
 }
 
-.info-item:hover{
-    transform:translateY(-3px);
-}
+.info-label{
 
-.info-item small{
-    display:block;
+    font-size:12px;
 
-    color:#999;
+    color:#6b7280;
 
-    font-size:11px;
+    margin-bottom:5px;
 
     font-weight:700;
 
-    margin-bottom:6px;
+    text-transform:uppercase;
 }
 
-.info-item strong{
-    color:#222;
-    font-size:15px;
-}
+.info-value{
 
-/* =====================================================
-   EDITABLE CUSTOM BOXES
-===================================================== */
+    font-size:16px;
 
-.custom-boxes{
-    display:grid;
+    font-weight:800;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    color:#111827;
 
-    gap:15px;
-}
-
-.custom-box{
-    padding:20px;
-
-    border-radius:19px;
-
-    background:
-        rgba(255,255,255,.72);
-
-    border:1px solid rgba(0,0,0,.08);
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.06);
-
-    transition:.25s;
-}
-
-.custom-box:hover{
-    transform:translateY(-4px);
-}
-
-.custom-icon{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.custom-box h4{
-    font-size:17px;
-    margin-bottom:7px;
-}
-
-.custom-box p{
-    color:#777;
-    font-size:13px;
-    line-height:1.6;
+    word-break:break-word;
 }
 
 /* =====================================================
-   FEATURES
-===================================================== */
+   CUSTOM BOXES / FEATURES
+   ===================================================== */
 
-.features{
+.cards-grid{
+
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3,minmax(0,1fr));
 
     gap:16px;
 }
 
-.feature{
-    text-align:center;
+.feature-card{
 
-    padding:27px 16px;
+    padding:22px;
 
-    border-radius:21px;
+    border-radius:22px;
 
     background:
-        rgba(255,255,255,.72);
+        rgba(255,255,255,.62);
 
-    border:1px solid rgba(0,0,0,.08);
+    border:
+        1px solid rgba(255,255,255,.9);
 
     box-shadow:
-        0 12px 40px rgba(0,0,0,.07);
+        0 10px 30px rgba(0,0,0,.05);
 
-    transition:.3s;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-.feature:hover{
-    transform:
-        translateY(-6px)
-        scale(1.01);
+.feature-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.09);
 }
 
 .feature-icon{
-    font-size:38px;
-    margin-bottom:13px;
+
+    width:50px;
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:
+        rgba(230,0,35,.08);
+
+    color:#e60023;
+
+    font-size:24px;
+
+    margin-bottom:15px;
 }
 
-.feature h4{
-    font-size:16px;
-    margin-bottom:7px;
+.feature-card h3{
+
+    font-size:18px;
+
+    margin-bottom:8px;
+
+    color:#111827;
 }
 
-.feature p{
-    color:#777;
-    font-size:13px;
-    line-height:1.55;
+.feature-card p{
+
+    font-size:14px;
+
+    color:#6b7280;
+
+    line-height:1.7;
 }
 
 /* =====================================================
    SCREENSHOTS
-===================================================== */
+   ===================================================== */
 
-.screenshots{
+.screenshot-grid{
+
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3,minmax(0,1fr));
 
-    gap:18px;
+    gap:15px;
 }
 
 .screenshot{
-    position:relative;
 
-    overflow:hidden;
-
-    border-radius:21px;
-
-    background:#f2f2f2;
-
-    border:1px solid rgba(0,0,0,.10);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.10);
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.screenshot:hover{
-    transform:
-        translateY(-6px)
-        scale(1.015);
-}
-
-.screenshot::after{
-    content:"View";
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(.7);
-
-    opacity:0;
-
-    background:
-        rgba(0,0,0,.72);
-
-    color:white;
-
-    padding:10px 17px;
-
-    border-radius:30px;
-
-    font-size:12px;
-    font-weight:800;
-
-    transition:.25s;
-}
-
-.screenshot:hover::after{
-    opacity:1;
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-}
-
-.screenshot img{
     width:100%;
 
     aspect-ratio:9/16;
 
     object-fit:cover;
 
-    display:block;
-}
+    border-radius:20px;
 
-.empty-preview{
-    grid-column:1/-1;
+    cursor:pointer;
 
-    text-align:center;
-
-    padding:45px 20px;
-
-    color:#888;
-
-    background:
-        rgba(255,255,255,.65);
+    background:#f3f4f6;
 
     border:
-        1px dashed #bbb;
+        2px solid rgba(255,255,255,.9);
 
-    border-radius:18px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    transition:
+        transform .25s ease;
+}
+
+.screenshot:hover{
+
+    transform:
+        scale(1.025);
 }
 
 /* =====================================================
-   MODAL
-===================================================== */
+   IMAGE MODAL
+   ===================================================== */
 
-.modal{
+#image-modal{
+
     position:fixed;
 
     inset:0;
 
+    z-index:9999;
+
     display:none;
 
     align-items:center;
+
     justify-content:center;
 
     padding:20px;
 
     background:
-        rgba(255,255,255,.82);
+        rgba(0,0,0,.72);
 
-    backdrop-filter:blur(22px);
+    backdrop-filter:
+        blur(12px);
 
-    z-index:9999;
+    -webkit-backdrop-filter:
+        blur(12px);
 }
 
-.modal.show{
+#image-modal.show{
+
     display:flex;
 }
 
-.modal img{
-    max-width:95%;
-    max-height:88vh;
+#modal-image{
+
+    max-width:95vw;
+
+    max-height:90vh;
 
     object-fit:contain;
 
     border-radius:18px;
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.30);
+        0 30px 80px rgba(0,0,0,.45);
 }
 
-.close-modal{
-    position:fixed;
+.modal-close{
 
-    top:18px;
-    right:18px;
+    position:absolute;
+
+    top:20px;
+    right:20px;
 
     width:45px;
     height:45px;
 
+    border:none;
+
     border-radius:50%;
 
-    border:1px solid #ccc;
-
-    background:#fff;
-
-    color:#111;
+    background:
+        rgba(255,255,255,.9);
 
     font-size:25px;
 
     cursor:pointer;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.12);
 }
 
 /* =====================================================
    FOOTER
-===================================================== */
+   ===================================================== */
 
 footer{
+
+    position:relative;
+
+    z-index:3;
+
     text-align:center;
 
-    padding:35px 15px 45px;
+    padding:
+        35px
+        20px
+        45px;
 
-    border-top:1px solid rgba(0,0,0,.08);
+    color:#6b7280;
 
-    color:#888;
-
-    font-size:12px;
+    font-size:13px;
 
     line-height:1.7;
 }
 
-footer strong{
-    color:#222;
-}
-
 /* =====================================================
-   TOAST
-===================================================== */
+   LOADING
+   ===================================================== */
 
-.toast{
-    position:fixed;
+.loading{
 
-    left:50%;
-    bottom:25px;
+    text-align:center;
 
-    transform:
-        translate(-50%,100px);
+    padding:30px;
 
-    opacity:0;
-
-    background:#111;
-
-    color:#fff;
-
-    padding:13px 20px;
-
-    border-radius:14px;
-
-    font-size:13px;
-    font-weight:700;
-
-    z-index:10000;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.25);
-
-    transition:.3s;
+    color:#6b7280;
 }
 
-.toast.show{
-    transform:
-        translate(-50%,0);
+.spinner{
 
-    opacity:1;
+    width:35px;
+    height:35px;
+
+    border:
+        4px solid #e5e7eb;
+
+    border-top-color:#e60023;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin:0 auto 12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 /* =====================================================
    MOBILE
-===================================================== */
+   ===================================================== */
 
 @media(max-width:700px){
 
-    header{
-        padding-top:24px;
+    .container{
+
+        width:92%;
     }
 
     .logo-box{
-        width:165px;
-        height:165px;
-        border-radius:29px;
+
+        width:125px;
+        height:125px;
+
+        border-radius:30px;
     }
 
     .hero{
+
         padding-top:25px;
     }
 
-    .hero h1{
-        letter-spacing:-1.5px;
-    }
-
-    .hero p{
-        font-size:14px;
-    }
-
     .glass-card{
-        padding:19px;
-        border-radius:20px;
+
+        padding:20px;
+
+        border-radius:22px;
     }
 
     .info-grid{
+
         grid-template-columns:1fr;
     }
 
-    .features{
+    .cards-grid{
+
         grid-template-columns:1fr;
     }
 
-    .custom-boxes{
-        grid-template-columns:1fr;
-    }
+    .screenshot-grid{
 
-    .screenshots{
         grid-template-columns:
-            repeat(2,1fr);
-
-        gap:12px;
-    }
-
-    .section{
-        padding-bottom:45px;
-    }
-}
-
-@media(max-width:390px){
-
-    .logo-box{
-        width:150px;
-        height:150px;
+            repeat(2,minmax(0,1fr));
     }
 
     .download-btn{
-        width:90%;
-    }
 
-    .screenshots{
-        gap:9px;
+        width:100%;
+
+        max-width:320px;
     }
 }
+
+@media(max-width:380px){
+
+    .screenshot-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition:none !important;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- =====================================================
-     ANIMATED BACKGROUND
-===================================================== -->
+     BACKGROUND ONLY
+     ALL ANIMATION STAYS HERE
+     ===================================================== -->
 
-<div class="background">
+<div id="background-effects">
 
-    <div class="light one"></div>
-    <div class="light two"></div>
-    <div class="light three"></div>
-    <div class="light four"></div>
-
-    <div
-        class="particles"
-        id="particles"
-    ></div>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    <div class="bg-blob blob-4"></div>
 
 </div>
 
 
 <!-- =====================================================
-     HEADER
-===================================================== -->
+     MAIN CONTENT
+     ===================================================== -->
+
+<div id="page-content">
+
+<div class="container">
 
 <header>
 
-    <div class="container">
+    <div class="logo-box">
 
-        <div
-            class="top-label"
-            id="topLabel"
+        <img
+            id="app-logo"
+            src="https://i.ibb.co.com/2YR74gdt/IMG-20260905-WA0015.jpg"
+            alt="ESP TOUR 2.0 Logo"
+            loading="eager"
         >
-            OFFICIAL TOURNAMENT APP
-        </div>
-
-        <div class="logo-box">
-
-            <img
-                id="appLogo"
-                src="https://i.ibb.co.com/2YR74gdt/IMG-20260905-WA0015.jpg"
-                alt="ESP TOUR 2.0"
-            >
-
-        </div>
 
     </div>
+
+    <h1 class="app-name" id="app-name">
+        ESP <span>TOUR 2.0</span>
+    </h1>
+
+    <p class="tagline" id="tagline">
+        Official Tournament App
+    </p>
 
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<section class="hero">
 
-<main>
+    <div class="top-label" id="top-label">
+        🏆 ESP OFFICIAL TOUR
+    </div>
 
-<div class="container">
+    <p
+        class="hero-description"
+        id="hero-description"
+    >
+        Join ESP TOUR 2.0 and participate in exciting tournaments.
+    </p>
 
-    <!-- HERO -->
+    <button
+        class="download-btn"
+        id="download-btn"
+        type="button"
+    >
 
-    <section class="hero">
-
-        <h1 id="appName">
-            ESP TOUR 2.0
-        </h1>
-
-        <h2 id="appTagline">
-            ESP OFFICIAL TOURNAMENT
-        </h2>
-
-        <p id="appDescription">
-            Join exciting tournaments, compete with players
-            and enjoy the ultimate tournament experience.
-        </p>
-
-    </section>
-
-
-    <!-- DOWNLOAD -->
-
-    <div class="download-area">
-
-        <button
-            class="download-btn"
-            id="downloadBtn"
-            onclick="downloadApp()"
-        >
-            <span>⬇</span>
-            <span id="downloadButtonText">
-                DOWNLOAD APP
-            </span>
-        </button>
+        <span id="download-text">
+            ⬇️ Download App
+        </span>
 
         <div
-            class="progress-wrapper"
-            id="progressWrapper"
-        >
+            class="download-progress"
+            id="download-progress"
+        ></div>
 
-            <div
-                class="progress-text"
-                id="progressText"
-            >
-                Preparing download... 0%
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     APP INFORMATION
+     ===================================================== -->
+
+<section class="glass-card">
+
+    <h2
+        class="section-title"
+        id="information-title"
+    >
+        App <span>Information</span>
+    </h2>
+
+    <p
+        class="section-description"
+        id="long-description"
+    >
+        ESP TOUR 2.0 is an official tournament platform.
+    </p>
+
+    <br>
+
+    <div class="info-grid">
+
+        <div class="info-item">
+
+            <div class="info-label">
+                App Name
             </div>
 
-            <div class="progress-bar">
+            <div
+                class="info-value"
+                id="info-app-name"
+            >
+                ESP TOUR 2.0
+            </div>
 
-                <div
-                    class="progress-fill"
-                    id="progressFill"
-                ></div>
+        </div>
 
+
+        <div class="info-item">
+
+            <div class="info-label">
+                Version
+            </div>
+
+            <div
+                class="info-value"
+                id="info-version"
+            >
+                1.0.0
+            </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <div class="info-label">
+                Platform
+            </div>
+
+            <div
+                class="info-value"
+                id="info-platform"
+            >
+                Android
+            </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <div class="info-label">
+                Category
+            </div>
+
+            <div
+                class="info-value"
+                id="info-category"
+            >
+                Tournament
             </div>
 
         </div>
 
     </div>
 
-
-    <!-- =================================================
-         APP INFORMATION
-    ================================================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h3 id="informationTitle">
-                App Information
-            </h3>
-
-            <span></span>
-
-        </div>
-
-        <div class="glass-card">
-
-            <p
-                class="long-description"
-                id="longDescription"
-            >
-                ESP TOUR 2.0 is an official tournament
-                platform designed for players who love
-                competitive gaming.
-            </p>
+</section>
 
 
-            <div class="info-grid">
+<!-- =====================================================
+     CUSTOM ADMIN CONTENT
+     ===================================================== -->
 
-                <div class="info-item">
+<section
+    class="glass-card"
+    id="custom-section"
+>
 
-                    <small id="labelAppName">
-                        App Name
-                    </small>
-
-                    <strong id="infoName">
-                        ESP TOUR 2.0
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small id="labelVersion">
-                        Version
-                    </small>
-
-                    <strong id="appVersion">
-                        Latest Version
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small id="labelPlatform">
-                        Platform
-                    </small>
-
-                    <strong id="appPlatform">
-                        Android
-                    </strong>
-
-                </div>
-
-
-                <div class="info-item">
-
-                    <small id="labelCategory">
-                        Category
-                    </small>
-
-                    <strong id="appCategory">
-                        Tournament
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         CUSTOM ADMIN BOXES
-    ================================================= -->
-
-    <section
-        class="section"
-        id="customSection"
+    <h2
+        class="section-title"
+        id="custom-section-title"
     >
+        More <span>Information</span>
+    </h2>
 
-        <div class="section-title">
+    <div
+        class="cards-grid"
+        id="custom-boxes"
+    ></div>
 
-            <h3 id="customSectionTitle">
-                More Information
-            </h3>
-
-            <span></span>
-
-        </div>
-
-        <div
-            class="custom-boxes"
-            id="customBoxes"
-        ></div>
-
-    </section>
+</section>
 
 
-    <!-- =================================================
-         FEATURES
-    ================================================= -->
+<!-- =====================================================
+     FEATURES
+     ===================================================== -->
 
-    <section class="section">
+<section class="glass-card">
 
-        <div class="section-title">
+    <h2
+        class="section-title"
+        id="features-title"
+    >
+        App <span>Features</span>
+    </h2>
 
-            <h3 id="featuresTitle">
-                Why ESP TOUR 2.0?
-            </h3>
+    <div
+        class="cards-grid"
+        id="features-container"
+    ></div>
 
-            <span></span>
-
-        </div>
-
-
-        <div
-            class="features"
-            id="features"
-        ></div>
-
-    </section>
+</section>
 
 
-    <!-- =================================================
-         SCREENSHOTS
-    ================================================= -->
+<!-- =====================================================
+     SCREENSHOTS
+     ===================================================== -->
 
-    <section class="section">
+<section class="glass-card">
 
-        <div class="section-title">
+    <h2
+        class="section-title"
+        id="preview-title"
+    >
+        App <span>Preview</span>
+    </h2>
 
-            <h3 id="previewTitle">
-                App Preview
-            </h3>
+    <div
+        class="screenshot-grid"
+        id="screenshots-container"
+    ></div>
 
-            <span></span>
+</section>
 
-        </div>
-
-
-        <div
-            class="screenshots"
-            id="screenshots"
-        >
-
-            <div class="empty-preview">
-                Loading app previews...
-            </div>
-
-        </div>
-
-    </section>
 
 </div>
-
-</main>
 
 
 <!-- =====================================================
      FOOTER
-===================================================== -->
+     ===================================================== -->
 
 <footer>
 
-    <strong id="footerName">
+    <div id="footer-text">
         ESP TOUR 2.0
-    </strong>
+    </div>
 
-    <br>
-
-    <span id="footerText">
-        Official Tournament App
-    </span>
-
-    <br><br>
-
-    © <span id="year"></span>
-    <span id="footerCopyright">
-        ESP TOUR 2.0. All Rights Reserved.
-    </span>
+    <div id="footer-copyright">
+        © 2026 ESP TOUR 2.0. All Rights Reserved.
+    </div>
 
 </footer>
+
+</div>
 
 
 <!-- =====================================================
      IMAGE MODAL
-===================================================== -->
+     ===================================================== -->
 
-<div
-    class="modal"
-    id="imageModal"
-    onclick="closeImage()"
->
+<div id="image-modal">
 
     <button
-        class="close-modal"
-        onclick="event.stopPropagation();closeImage();"
+        class="modal-close"
+        id="modal-close"
+        type="button"
     >
         ×
     </button>
 
     <img
-        id="modalImage"
+        id="modal-image"
         src=""
-        alt="App Preview"
-        onclick="event.stopPropagation()"
+        alt="Preview"
     >
 
 </div>
 
 
 <!-- =====================================================
-     TOAST
-===================================================== -->
-
-<div
-    class="toast"
-    id="toast"
-></div>
-
-
-<!-- =====================================================
      FIREBASE
-===================================================== -->
+     ===================================================== -->
 
 <script type="module">
 
 import {
     initializeApp
-}
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-
+} from
+"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 import {
     getDatabase,
     ref,
     onValue
-}
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+} from
+"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 
 /* =====================================================
    FIREBASE CONFIG
-===================================================== */
+   ===================================================== */
 
 const firebaseConfig = {
 
@@ -1441,16 +1304,13 @@ const firebaseConfig = {
         "364592477150",
 
     appId:
-        "1:364592477150:web:e26f823c1372f51bb1234f",
+        "1:364592477150:web:e26f823c1372f51bb1234",
 
     measurementId:
         "G-663DCHW8P2"
+
 };
 
-
-/* =====================================================
-   INITIALIZE FIREBASE
-===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -1461,29 +1321,27 @@ const db =
 
 /* =====================================================
    DEFAULT DATA
-===================================================== */
+   ===================================================== */
 
-let downloadLink = "";
-
-let appData = {
+const DEFAULT_DATA = {
 
     appName:
         "ESP TOUR 2.0",
 
     tagline:
-        "ESP OFFICIAL TOURNAMENT",
+        "Official Tournament App",
 
     topLabel:
-        "OFFICIAL TOURNAMENT APP",
+        "🏆 ESP OFFICIAL TOUR",
 
     description:
-        "Join exciting tournaments, compete with players and enjoy the ultimate tournament experience.",
+        "Join ESP TOUR 2.0 and participate in exciting tournaments.",
 
     longDescription:
-        "ESP TOUR 2.0 is an official tournament platform designed for players who love competitive gaming.",
+        "ESP TOUR 2.0 is an official tournament platform where players can join exciting gaming tournaments.",
 
     version:
-        "Latest Version",
+        "1.0.0",
 
     platform:
         "Android",
@@ -1495,13 +1353,13 @@ let appData = {
         "https://i.ibb.co.com/2YR74gdt/IMG-20260905-WA0015.jpg",
 
     downloadButtonText:
-        "DOWNLOAD APP",
+        "⬇️ Download App",
 
     informationTitle:
         "App Information",
 
     featuresTitle:
-        "Why ESP TOUR 2.0?",
+        "App Features",
 
     customSectionTitle:
         "More Information",
@@ -1510,584 +1368,631 @@ let appData = {
         "App Preview",
 
     footerText:
-        "Official Tournament App",
+        "ESP TOUR 2.0",
 
     footerCopyright:
-        "ESP TOUR 2.0. All Rights Reserved.",
+        "© 2026 ESP TOUR 2.0. All Rights Reserved.",
 
-    screenshots: [],
+    downloadLink:
+        "",
 
-    customBoxes: [],
+    screenshots:
+        [],
 
-    features: []
+    customBoxes:
+        [],
+
+    features:
+        []
 
 };
 
 
 /* =====================================================
-   DEFAULT FEATURES
-===================================================== */
+   SAFE TEXT
+   ===================================================== */
 
-const defaultFeatures = [
+function safeText(value, fallback = ""){
 
-    {
-        icon:"🏆",
-        title:"Competitive Tournaments",
-        description:
-            "Join tournaments and compete with other players."
-    },
+    if(
+        value === undefined ||
+        value === null ||
+        value === ""
+    ){
 
-    {
-        icon:"⚡",
-        title:"Fast Experience",
-        description:
-            "Enjoy a simple and fast tournament experience."
-    },
+        return fallback;
 
-    {
-        icon:"🎮",
-        title:"Gaming Community",
-        description:
-            "Connect with competitive gaming players."
     }
 
-];
+    return String(value);
+
+}
 
 
 /* =====================================================
-   FIREBASE LISTENER
-===================================================== */
+   DOWNLOAD LINK
+   ===================================================== */
 
-const landingRef =
-    ref(db,"landingPage");
+let currentDownloadLink = "";
 
 
-onValue(
-    landingRef,
+/* =====================================================
+   APPLY DATA
+   ===================================================== */
 
-    (snapshot)=>{
+function applyData(data){
 
-        const data =
-            snapshot.val();
+    data =
+        data || DEFAULT_DATA;
 
-        if(data){
 
-            appData = {
+    const merged = {
 
-                ...appData,
-                ...data
+        ...DEFAULT_DATA,
 
-            };
+        ...data
 
-            downloadLink =
-                data.downloadLink || "";
+    };
 
-        }
 
-        renderPage();
+    /* Logo */
 
-    },
-
-    (error)=>{
-
-        console.error(
-            "Firebase error:",
-            error
+    document
+        .getElementById("app-logo")
+        .src =
+        safeText(
+            merged.logo,
+            DEFAULT_DATA.logo
         );
 
-        renderPage();
 
-    }
-);
+    /* Header */
 
-
-/* =====================================================
-   RENDER PAGE
-===================================================== */
-
-function renderPage(){
-
-    const name =
-        appData.appName ||
-        "ESP TOUR 2.0";
+    document
+        .getElementById("app-name")
+        .innerHTML =
+        formatAppName(
+            safeText(
+                merged.appName,
+                DEFAULT_DATA.appName
+            )
+        );
 
 
-    document.title =
-        name;
+    document
+        .getElementById("tagline")
+        .textContent =
+        safeText(
+            merged.tagline
+        );
 
 
-    setText(
-        "appName",
-        name
+    document
+        .getElementById("top-label")
+        .textContent =
+        safeText(
+            merged.topLabel
+        );
+
+
+    document
+        .getElementById("hero-description")
+        .textContent =
+        safeText(
+            merged.description
+        );
+
+
+    /* Download */
+
+    currentDownloadLink =
+        safeText(
+            merged.downloadLink
+        );
+
+
+    document
+        .getElementById("download-text")
+        .textContent =
+        safeText(
+            merged.downloadButtonText,
+            "⬇️ Download App"
+        );
+
+
+    /* Information */
+
+    document
+        .getElementById("information-title")
+        .innerHTML =
+        makeSectionTitle(
+            safeText(
+                merged.informationTitle,
+                "App Information"
+            )
+        );
+
+
+    document
+        .getElementById("long-description")
+        .textContent =
+        safeText(
+            merged.longDescription
+        );
+
+
+    document
+        .getElementById("info-app-name")
+        .textContent =
+        safeText(
+            merged.appName
+        );
+
+
+    document
+        .getElementById("info-version")
+        .textContent =
+        safeText(
+            merged.version
+        );
+
+
+    document
+        .getElementById("info-platform")
+        .textContent =
+        safeText(
+            merged.platform
+        );
+
+
+    document
+        .getElementById("info-category")
+        .textContent =
+        safeText(
+            merged.category
+        );
+
+
+    /* Titles */
+
+    document
+        .getElementById("custom-section-title")
+        .innerHTML =
+        makeSectionTitle(
+            safeText(
+                merged.customSectionTitle,
+                "More Information"
+            )
+        );
+
+
+    document
+        .getElementById("features-title")
+        .innerHTML =
+        makeSectionTitle(
+            safeText(
+                merged.featuresTitle,
+                "App Features"
+            )
+        );
+
+
+    document
+        .getElementById("preview-title")
+        .innerHTML =
+        makeSectionTitle(
+            safeText(
+                merged.previewTitle,
+                "App Preview"
+            )
+        );
+
+
+    /* Footer */
+
+    document
+        .getElementById("footer-text")
+        .textContent =
+        safeText(
+            merged.footerText
+        );
+
+
+    document
+        .getElementById("footer-copyright")
+        .textContent =
+        safeText(
+            merged.footerCopyright
+        );
+
+
+    /* Custom boxes */
+
+    renderCards(
+        "custom-boxes",
+        merged.customBoxes
     );
 
 
-    setText(
-        "infoName",
-        name
+    /* Features */
+
+    renderCards(
+        "features-container",
+        merged.features
     );
 
 
-    setText(
-        "footerName",
-        name
+    /* Screenshots */
+
+    renderScreenshots(
+        merged.screenshots
     );
-
-
-    setText(
-        "appTagline",
-        appData.tagline ||
-        "ESP OFFICIAL TOURNAMENT"
-    );
-
-
-    setText(
-        "topLabel",
-        appData.topLabel ||
-        "OFFICIAL TOURNAMENT APP"
-    );
-
-
-    setText(
-        "appDescription",
-        appData.description || ""
-    );
-
-
-    setText(
-        "longDescription",
-        appData.longDescription || ""
-    );
-
-
-    setText(
-        "appVersion",
-        appData.version ||
-        "Latest Version"
-    );
-
-
-    setText(
-        "appPlatform",
-        appData.platform ||
-        "Android"
-    );
-
-
-    setText(
-        "appCategory",
-        appData.category ||
-        "Tournament"
-    );
-
-
-    setText(
-        "downloadButtonText",
-        appData.downloadButtonText ||
-        "DOWNLOAD APP"
-    );
-
-
-    setText(
-        "informationTitle",
-        appData.informationTitle ||
-        "App Information"
-    );
-
-
-    setText(
-        "featuresTitle",
-        appData.featuresTitle ||
-        "Why ESP TOUR 2.0?"
-    );
-
-
-    setText(
-        "customSectionTitle",
-        appData.customSectionTitle ||
-        "More Information"
-    );
-
-
-    setText(
-        "previewTitle",
-        appData.previewTitle ||
-        "App Preview"
-    );
-
-
-    setText(
-        "footerText",
-        appData.footerText ||
-        "Official Tournament App"
-    );
-
-
-    setText(
-        "footerCopyright",
-        appData.footerCopyright ||
-        "ESP TOUR 2.0. All Rights Reserved."
-    );
-
-
-    const logo =
-        appData.logo ||
-        "https://i.ibb.co.com/2YR74gdt/IMG-20260905-WA0015.jpg";
-
-
-    document.getElementById(
-        "appLogo"
-    ).src = logo;
-
-
-    renderCustomBoxes();
-
-    renderFeatures();
-
-    renderScreenshots();
 
 }
 
 
 /* =====================================================
-   SET TEXT
-===================================================== */
+   APP NAME FORMAT
+   ===================================================== */
 
-function setText(id,value){
+function formatAppName(name){
 
-    const element =
-        document.getElementById(id);
+    const parts =
+        name.trim().split(" ");
 
-    if(element){
+    if(parts.length <= 1){
 
-        element.textContent =
-            value;
+        return escapeHTML(name);
 
     }
+
+    const last =
+        escapeHTML(parts.pop());
+
+    const first =
+        escapeHTML(parts.join(" "));
+
+    return `
+        ${first}
+        <span>${last}</span>
+    `;
 
 }
 
 
 /* =====================================================
-   CUSTOM ADMIN BOXES
-===================================================== */
+   SECTION TITLE
+   ===================================================== */
 
-function renderCustomBoxes(){
+function makeSectionTitle(title){
 
-    const box =
+    const words =
+        title.trim().split(" ");
+
+    if(words.length <= 1){
+
+        return escapeHTML(title);
+
+    }
+
+    const last =
+        escapeHTML(words.pop());
+
+    const first =
+        escapeHTML(words.join(" "));
+
+    return `
+        ${first}
+        <span>${last}</span>
+    `;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   RENDER CARDS
+   ===================================================== */
+
+function renderCards(
+    containerId,
+    items
+){
+
+    const container =
         document.getElementById(
-            "customBoxes"
+            containerId
         );
 
 
-    box.innerHTML = "";
+    container.innerHTML = "";
 
 
-    let items =
-        Array.isArray(
-            appData.customBoxes
-        )
-        ?
-        appData.customBoxes
-        :
-        [];
-
-
-    if(!items.length){
-
-        items = [
-
-            {
-                icon:"🎯",
-                title:"Join Tournaments",
-                description:
-                    "Find and join exciting tournaments."
-            },
-
-            {
-                icon:"💎",
-                title:"Exclusive Events",
-                description:
-                    "Take part in special competitive events."
-            }
-
-        ];
-
-    }
-
-
-    items.forEach(
-        (item)=>{
-
-            if(!item) return;
-
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-            card.className =
-                "custom-box";
-
-
-            card.innerHTML = `
-
-                <div class="custom-icon">
-                    ${escapeHTML(
-                        item.icon || "⭐"
-                    )}
-                </div>
-
-                <h4>
-                    ${escapeHTML(
-                        item.title ||
-                        "Information"
-                    )}
-                </h4>
-
-                <p>
-                    ${escapeHTML(
-                        item.description ||
-                        ""
-                    )}
-                </p>
-
-            `;
-
-
-            box.appendChild(card);
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   FEATURES
-===================================================== */
-
-function renderFeatures(){
-
-    const box =
-        document.getElementById(
-            "features"
-        );
-
-
-    box.innerHTML = "";
-
-
-    let items =
-        Array.isArray(
-            appData.features
-        )
-        ?
-        appData.features
-        :
-        [];
-
-
-    if(!items.length){
-
-        items =
-            defaultFeatures;
-
-    }
-
-
-    items.forEach(
-        (item)=>{
-
-            if(!item) return;
-
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-            card.className =
-                "feature";
-
-
-            card.innerHTML = `
-
-                <div class="feature-icon">
-                    ${escapeHTML(
-                        item.icon || "⭐"
-                    )}
-                </div>
-
-                <h4>
-                    ${escapeHTML(
-                        item.title ||
-                        "Feature"
-                    )}
-                </h4>
-
-                <p>
-                    ${escapeHTML(
-                        item.description ||
-                        ""
-                    )}
-                </p>
-
-            `;
-
-
-            box.appendChild(card);
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SCREENSHOTS
-===================================================== */
-
-function renderScreenshots(){
-
-    const box =
-        document.getElementById(
-            "screenshots"
-        );
-
-
-    box.innerHTML = "";
-
-
-    let images =
-        Array.isArray(
-            appData.screenshots
-        )
-        ?
-        appData.screenshots
-        :
-        [];
-
-
-    if(!images.length){
-
-        box.innerHTML = `
-
-            <div class="empty-preview">
-
-                No app preview has been added yet.
-
-            </div>
-
-        `;
+    if(!items){
 
         return;
 
     }
 
 
-    images.forEach(
-        (image)=>{
-
-            let url = "";
+    let list = [];
 
 
-            if(
-                typeof image ===
-                "string"
-            ){
+    if(Array.isArray(items)){
 
-                url = image;
+        list = items;
 
-            }
+    }else{
 
-            else if(
-                image &&
-                typeof image ===
-                "object"
-            ){
+        list =
+            Object.values(items);
 
-                url =
-                    image.url ||
-                    image.image ||
-                    "";
-
-            }
+    }
 
 
-            if(!url) return;
+    if(list.length === 0){
+
+        return;
+
+    }
 
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+    list.forEach(item => {
 
+        if(!item){
 
-            item.className =
-                "screenshot";
-
-
-            const img =
-                document.createElement(
-                    "img"
-                );
-
-
-            img.src =
-                url;
-
-            img.alt =
-                "ESP TOUR 2.0 App Preview";
-
-            img.loading =
-                "lazy";
-
-
-            item.appendChild(img);
-
-
-            item.onclick =
-                ()=>{
-                    openImage(url);
-                };
-
-
-            box.appendChild(item);
+            return;
 
         }
-    );
 
 
-    if(!box.children.length){
+        const card =
+            document.createElement("div");
 
-        box.innerHTML = `
+        card.className =
+            "feature-card";
 
-            <div class="empty-preview">
 
-                No valid preview image found.
+        const icon =
+            safeText(
+                item.icon,
+                "⭐"
+            );
 
+
+        const title =
+            safeText(
+                item.title,
+                "Information"
+            );
+
+
+        const description =
+            safeText(
+                item.description,
+                ""
+            );
+
+
+        card.innerHTML = `
+
+            <div class="feature-icon">
+                ${escapeHTML(icon)}
             </div>
+
+            <h3>
+                ${escapeHTML(title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(description)}
+            </p>
 
         `;
 
-    }
+
+        container.appendChild(card);
+
+    });
 
 }
 
 
 /* =====================================================
+   RENDER SCREENSHOTS
+   ===================================================== */
+
+function renderScreenshots(
+    screenshots
+){
+
+    const container =
+        document.getElementById(
+            "screenshots-container"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if(!screenshots){
+
+        return;
+
+    }
+
+
+    let list = [];
+
+
+    if(Array.isArray(screenshots)){
+
+        list =
+            screenshots;
+
+    }else{
+
+        list =
+            Object.values(screenshots);
+
+    }
+
+
+    list.forEach(item => {
+
+        let url = "";
+
+
+        if(typeof item === "string"){
+
+            url = item;
+
+        }else if(item){
+
+            url =
+                safeText(
+                    item.url ||
+                    item.image ||
+                    item.src
+                );
+
+        }
+
+
+        if(!url){
+
+            return;
+
+        }
+
+
+        const image =
+            document.createElement("img");
+
+
+        image.className =
+            "screenshot";
+
+
+        image.src = url;
+
+
+        image.alt =
+            "ESP TOUR 2.0 Screenshot";
+
+
+        image.loading =
+            "lazy";
+
+
+        image.addEventListener(
+            "click",
+            () => openImage(url)
+        );
+
+
+        container.appendChild(image);
+
+    });
+
+}
+
+
+/* =====================================================
+   IMAGE MODAL
+   ===================================================== */
+
+function openImage(url){
+
+    const modal =
+        document.getElementById(
+            "image-modal"
+        );
+
+    const image =
+        document.getElementById(
+            "modal-image"
+        );
+
+
+    image.src = url;
+
+    modal.classList.add("show");
+
+}
+
+
+function closeImage(){
+
+    document
+        .getElementById(
+            "image-modal"
+        )
+        .classList.remove("show");
+
+}
+
+
+document
+    .getElementById("modal-close")
+    .addEventListener(
+        "click",
+        closeImage
+    );
+
+
+document
+    .getElementById("image-modal")
+    .addEventListener(
+        "click",
+        event => {
+
+            if(
+                event.target.id ===
+                "image-modal"
+            ){
+
+                closeImage();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
    DOWNLOAD
-===================================================== */
+   ===================================================== */
 
-window.downloadApp =
-function(){
+document
+    .getElementById("download-btn")
+    .addEventListener(
+        "click",
+        startDownload
+    );
 
-    if(!downloadLink){
 
-        showToast(
-            "Download link is not available yet."
+function startDownload(){
+
+    if(!currentDownloadLink){
+
+        alert(
+            "Download link এখনো Admin Panel থেকে সেট করা হয়নি।"
         );
 
         return;
@@ -2097,362 +2002,188 @@ function(){
 
     const button =
         document.getElementById(
-            "downloadBtn"
+            "download-btn"
         );
 
-
-    const wrapper =
+    const progress =
         document.getElementById(
-            "progressWrapper"
+            "download-progress"
         );
-
-
-    const fill =
-        document.getElementById(
-            "progressFill"
-        );
-
 
     const text =
         document.getElementById(
-            "progressText"
+            "download-text"
         );
 
 
-    button.classList.add(
-        "loading"
-    );
+    button.disabled = true;
 
 
-    wrapper.classList.add(
-        "show"
-    );
+    let value = 0;
 
 
-    let progress = 0;
+    text.textContent =
+        "Preparing Download...";
+
+
+    progress.style.width =
+        "0%";
 
 
     const timer =
-        setInterval(
-            ()=>{
+        setInterval(() => {
 
-                progress +=
-                    Math.floor(
-                        Math.random()*7
-                    ) + 4;
+            value += 5;
 
 
-                if(
-                    progress >= 100
-                ){
+            if(value >= 100){
 
-                    progress = 100;
+                value = 100;
 
-                }
+                clearInterval(timer);
 
 
-                fill.style.width =
-                    progress + "%";
+                progress.style.width =
+                    "100%";
 
 
                 text.textContent =
-                    "Preparing download... " +
-                    progress +
-                    "%";
+                    "Opening Download...";
 
 
-                if(
-                    progress >= 100
-                ){
+                setTimeout(() => {
 
-                    clearInterval(timer);
-
-
-                    text.textContent =
-                        "Starting download...";
+                    window.location.href =
+                        currentDownloadLink;
 
 
-                    setTimeout(
-                        ()=>{
+                    setTimeout(() => {
 
-                            startDownload(
-                                downloadLink
-                            );
+                        button.disabled =
+                            false;
 
+                        progress.style.width =
+                            "0%";
 
-                            button.classList.remove(
-                                "loading"
-                            );
+                        text.textContent =
+                            "⬇️ Download App";
 
-                        },
-                        500
-                    );
+                    },1500);
 
-                }
+                },300);
 
-            },
-            80
-        );
+            }else{
 
-};
+                progress.style.width =
+                    value + "%";
+
+                text.textContent =
+                    `Downloading ${value}%`;
+
+            }
+
+        },45);
+
+}
 
 
 /* =====================================================
-   START DOWNLOAD
-===================================================== */
+   FIREBASE REALTIME LISTENER
+   ===================================================== */
 
-function startDownload(url){
+const landingRef =
+    ref(
+        db,
+        "landingPage"
+    );
 
-    try{
 
-        const link =
-            document.createElement(
-                "a"
+onValue(
+
+    landingRef,
+
+    snapshot => {
+
+        if(snapshot.exists()){
+
+            applyData(
+                snapshot.val()
             );
 
+        }else{
 
-        link.href =
-            url;
+            applyData(
+                DEFAULT_DATA
+            );
 
+        }
 
-        link.target =
-            "_blank";
+    },
 
-
-        link.rel =
-            "noopener noreferrer";
-
-
-        link.download =
-            "";
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        link.remove();
-
-    }
-
-    catch(error){
+    error => {
 
         console.error(
+            "Firebase Error:",
             error
         );
 
 
-        window.open(
-            url,
-            "_blank"
+        applyData(
+            DEFAULT_DATA
         );
 
     }
 
-}
+);
 
 
 /* =====================================================
-   IMAGE VIEWER
-===================================================== */
-
-window.openImage =
-function(url){
-
-    document.getElementById(
-        "modalImage"
-    ).src = url;
-
-
-    document.getElementById(
-        "imageModal"
-    ).classList.add(
-        "show"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
-
-};
-
-
-window.closeImage =
-function(){
-
-    document.getElementById(
-        "imageModal"
-    ).classList.remove(
-        "show"
-    );
-
-
-    document.body.style.overflow =
-        "";
-
-};
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        ()=>{
-            toast.classList.remove(
-                "show"
-            );
-        },
-        3000
-    );
-
-}
-
-
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
-   BACKGROUND PARTICLES
-===================================================== */
+   CREATE BACKGROUND PARTICLES
+   ===================================================== */
 
 function createParticles(){
 
-    const container =
+    const layer =
         document.getElementById(
-            "particles"
+            "background-effects"
         );
 
 
     const colors = [
 
-        "#ff3b81",
-        "#5b5cff",
-        "#00aeea",
-        "#ff9f00",
-        "#111111",
-        "#00b894"
+        "#ff1744",
+        "#2979ff",
+        "#7c4dff",
+        "#00c853",
+        "#ff9100",
+        "#00b8d4",
+        "#e600ff"
 
     ];
 
 
+    const count =
+        window.innerWidth < 600
+            ? 25
+            : 45;
+
+
     for(
         let i=0;
-        i<45;
+        i<count;
         i++
     ){
 
         const particle =
-            document.createElement(
-                "span"
-            );
+            document.createElement("span");
 
 
         particle.className =
             "particle";
 
 
-        particle.style.left =
-            Math.random()*100 +
-            "%";
-
-
-        particle.style.setProperty(
-            "--move",
-            (
-                Math.random()*240 -
-                120
-            ) + "px"
-        );
-
-
-        particle.style.animationDuration =
-            (
-                7 +
-                Math.random()*10
-            ) + "s";
-
-
-        particle.style.animationDelay =
-            (
-                Math.random()*10
-            ) + "s";
-
-
-        const color =
-            colors[
-                Math.floor(
-                    Math.random() *
-                    colors.length
-                )
-            ];
-
-
-        particle.style.color =
-            color;
-
-
-        particle.style.background =
-            color;
-
-
         const size =
-            3 +
-            Math.random()*5;
+            Math.random() * 5 + 3;
 
 
         particle.style.width =
@@ -2463,7 +2194,47 @@ function createParticles(){
             size + "px";
 
 
-        container.appendChild(
+        particle.style.left =
+            Math.random()*100 + "%";
+
+
+        particle.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        particle.style.boxShadow =
+            `
+            0 0 ${size*4}px
+            currentColor
+            `;
+
+
+        particle.style.animationDuration =
+            (
+                Math.random()*9 + 8
+            ) + "s";
+
+
+        particle.style.animationDelay =
+            (
+                Math.random()*-15
+            ) + "s";
+
+
+        particle.style.setProperty(
+            "--moveX",
+            (
+                Math.random()*180 - 90
+            ) + "px"
+        );
+
+
+        layer.appendChild(
             particle
         );
 
@@ -2476,32 +2247,35 @@ createParticles();
 
 
 /* =====================================================
-   YEAR
-===================================================== */
+   PREVENT DOUBLE TOUCH ISSUES
+   ===================================================== */
 
-document.getElementById(
-    "year"
-).textContent =
-    new Date().getFullYear();
-
-
-/* =====================================================
-   ESCAPE MODAL
-===================================================== */
+let lastTouch = 0;
 
 document.addEventListener(
-    "keydown",
-    (event)=>{
+    "touchend",
+    event => {
+
+        const now =
+            Date.now();
+
 
         if(
-            event.key ===
-            "Escape"
+            now - lastTouch <
+            300
         ){
 
-            closeImage();
+            event.preventDefault();
 
         }
 
+
+        lastTouch =
+            now;
+
+    },
+    {
+        passive:false
     }
 );
 
